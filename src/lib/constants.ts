@@ -1,0 +1,2 @@
+export const JWT_SECRET = "RIUEI5O4YU5IOYU4OUOIUOIY";
+export const THIRTY_DAYS_MS = 1000 * 60 * 60 * 24 * 30;

@@ -1,7 +1,11 @@
 declare global {
-    type ReqBody = {
-        name: string;
-        age: number;
+    namespace NodeJS {
+        
+    }
+
+    type RegisterResponse = {
+        access_token: string;
+        username: string;
     }
 }
 

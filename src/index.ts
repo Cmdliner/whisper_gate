@@ -1,22 +1,16 @@
-import { randomUUIDv7 } from 'bun'
 import { Hono } from 'hono'
+import { auth } from './routes/auth.route'
+import { room } from './routes/room.routes'
 
 const app = new Hono()
 
-app.get('/', (c) => {
-	return c.text('Hello Hono!')
-})
+// app.use(cors())
+// app.use(helmet())
 
-app.get('/healthz' , (c) => {
-	return c.json({ success: true, message: 'The hood is up Cmdliner!'})
-})
+app.get('/', (c) => c.redirect("/healthz"))
+app.get("/healthz", (c) => c.json({ message: 'The hood is up Cmdliner!' }))
 
-app.post('/test', async (c) => {
-	const body = await c.req.json<ReqBody>();
-	const responseHeaders: HeadersInit = {
-		"Set-Cookie": `Bearer ${randomUUIDv7()}`
-	};
-	return 	c.json({success: true, message: `My name is ${body.name} and I am ${body.age} year(s) old`}, 200, responseHeaders)
-})
+app.route('/auth', auth)
+app.route('/rooms', room)
 
 export default app
