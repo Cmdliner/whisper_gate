@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let localStream: MediaStream;
 
     document.querySelector('#startCall')?.addEventListener('click', async () => {
-        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        } catch (error) {
+            alert("Error accessing your device media")
+        }
         localVideo.srcObject = localStream;
 
         ws.send(JSON.stringify({ type: 'start' }))
