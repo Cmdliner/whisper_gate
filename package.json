@@ -1,7 +1,8 @@
 {
   "name": "whisper_gate",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "bundle:script": "tsc src/static/script.ts --outdir static/"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
