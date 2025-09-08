@@ -18,7 +18,7 @@ app.route('/api/v1', api)
 app.route('', ui)
 
 export default {
-    port: 3001,
+    port: 3000,
     fetch: app.fetch,
     websocket,
 }
