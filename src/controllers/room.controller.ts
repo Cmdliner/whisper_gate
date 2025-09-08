@@ -23,8 +23,7 @@ export default class RoomController {
         const isPreviousParticipant = room.participants.some((p) => p.toString() !== userID);
         if (isPreviousParticipant) return c.json({ message: "Room joined successfully" });
 
-        room.participants = [new Types.ObjectId(userID as string), ...room.participants];
-        await room.save();
+        await Room.findByIdAndUpdate(room._id, { $push: { participants: new Types.ObjectId(userID as string) } });
 
         return c.json({ message: "Room joined successfully" });
 
